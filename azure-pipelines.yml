@@ -4,7 +4,7 @@ trigger:
       - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'New Self-Hosted Agent'
 
 steps:
   - task: Docker@2
