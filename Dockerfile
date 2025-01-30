@@ -1,17 +1,20 @@
-FROM node:19.7.0-alpine
+# Use an official Node.js runtime as a parent image
+FROM node:18
 
+# Set the working directory in the container
+WORKDIR /app
 
-ENV NODE_ENV production
-RUN mkdir /labone/ && chown node:node /labone/
-WORKDIR /labone/
+# Copy package.json and package-lock.json first
+COPY package*.json ./
 
-USER node
-
-COPY --chown=node:node . .
-
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application files
+COPY . .
 
-
+# Expose the application port
 EXPOSE 3000
-CMD node src/index.js
+
+# Run the application
+CMD ["node", "index.js"]
